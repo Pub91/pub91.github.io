@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="sr-Latn-ME">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101612">
+<meta name="description" content="Pub 91, Zabjelo - meni pića i cijene.">
+<title>Pub 91 Meni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Archivo:wdth,wght@75..100,400..800&display=swap">
+<style>
+/* Layout: poster-style hero like the pub's logo, then a sticky icon bar and one panel per category. Single dark look, same colors as the printed menu. */
+:root{
+  --bg:#101612;          /* near-black green from the printed card */
+  --bg2:#17201a;
+  --panel:#1a241d;
+  --line:#2c3a31;
+  --fg:#f4f1e8;
+  --mute:#a3ada5;
+  --gold:#f2c230;        /* the menu's yellow */
+  --gold-soft:rgba(242,194,48,.14);
+  --display:"Bowlby One","Arial Black",Impact,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+html{background:var(--bg)}
+body{background:radial-gradient(120% 60% at 50% 0%,#203026 0%,var(--bg) 60%) fixed,var(--bg);color:var(--fg);font:16px/1.45 var(--body);-webkit-text-size-adjust:100%;min-height:100vh}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:600px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* hero */
+header{position:relative;text-align:center;padding-block:40px 18px}
+.lang{position:absolute;top:14px;right:max(16px,env(safe-area-inset-right,0px));display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--bg2)}
+.lang button{background:none;border:0;color:var(--mute);font:700 12px var(--body);padding:8px 13px;min-height:34px;cursor:pointer;letter-spacing:.1em}
+.lang button[aria-pressed="true"]{background:var(--gold);color:#101612}
+.mark{margin:18px 0 0;font-family:var(--display);font-weight:400;font-size:clamp(64px,21vw,110px);line-height:.85;letter-spacing:2px;color:var(--fg);
+  -webkit-text-stroke:3px #000;paint-order:stroke fill;
+  text-shadow:5px 5px 0 #000,6px 6px 0 var(--gold),9px 9px 0 #000}
+.sub{display:flex;align-items:center;justify-content:center;gap:12px;margin:22px 0 0;font-weight:700;letter-spacing:.42em;text-transform:uppercase;font-size:13px}
+.sub::before,.sub::after{content:"";height:1px;width:42px;background:var(--gold)}
+.est{margin:8px 0 0;font:italic 700 14px var(--body);color:var(--gold);letter-spacing:.18em}
+.search{margin:26px auto 0;max-width:420px;position:relative}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--mute)}
+.search input{width:100%;box-sizing:border-box;min-height:48px;padding:12px 16px 12px 44px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);color:var(--fg);font:500 16px var(--body)}
+.search input::placeholder{color:var(--mute)}
+.search input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+
+/* category bar */
+nav.cats{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(16,22,18,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-block:1px solid var(--line);margin-top:22px}
+.cats .wrap{display:flex;gap:8px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.cats .wrap::-webkit-scrollbar{display:none}
+.cats .wrap{max-width:1100px}
+@media (min-width:700px){.cats .wrap{flex-wrap:wrap;justify-content:center;overflow:visible}section{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 130px)}}
+@media (max-width:699px){.cats .wrap{padding-right:48px;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent)}}
+.cats a{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;color:var(--fg);text-decoration:none;font-weight:600;font-size:14px;padding:8px 14px 8px 11px;border:1px solid var(--line);border-radius:999px;white-space:nowrap;background:var(--bg2);transition:border-color .15s,color .15s}
+.cats a svg{color:var(--gold);flex:0 0 auto}
+.cats a:hover,.cats a:focus-visible,.cats a.on{border-color:var(--gold);color:var(--gold);outline:none}
+
+/* sections */
+main{display:flex;flex-direction:column;gap:18px;padding-block:22px 28px}
+section{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 70px);background:linear-gradient(180deg,var(--panel),rgba(26,36,29,.6));border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px}
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.ic{width:42px;height:42px;border-radius:12px;background:var(--gold-soft);color:var(--gold);display:grid;place-items:center;flex:0 0 auto}
+h2{margin:0;font:800 19px var(--body);font-stretch:85%;text-transform:uppercase;letter-spacing:.07em;color:var(--fg);text-wrap:balance}
+.cnt{margin-left:auto;color:var(--mute);font-size:13px;font-variant-numeric:tabular-nums}
+ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+li{display:flex;align-items:baseline;gap:8px;padding-block:9px;border-top:1px solid rgba(44,58,49,.6)}
+li:first-child{border-top:0}
+.nm{min-width:0}
+.nm b{font-weight:600}
+.sz{display:inline-block;margin-left:7px;padding:1px 7px;border-radius:6px;background:var(--bg);color:var(--mute);font-size:12px;font-weight:600;vertical-align:1px;white-space:nowrap}
+.nm i{display:block;font-style:normal;color:var(--mute);font-size:13px;margin-top:1px}
+.dots{flex:1 1 auto;min-width:14px;border-bottom:2px dotted var(--line);transform:translateY(-4px)}
+.pr{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--gold);font-size:17px}
+.empty{text-align:center;color:var(--mute);padding:28px 0}
+
+footer{text-align:center;color:var(--mute);font-size:14px;display:flex;flex-direction:column;align-items:center;gap:14px;padding-block:8px 40px}
+.ig{display:inline-flex;align-items:center;gap:9px;color:var(--fg);text-decoration:none;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:11px 18px;background:var(--bg2)}
+.ig:hover,.ig:focus-visible{border-color:var(--gold);color:var(--gold);outline:none}
+.thanks{font-family:var(--display);font-size:22px;color:var(--fg);letter-spacing:1px;margin:0}
+
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+  .mark{animation:drop .6s cubic-bezier(.2,.9,.3,1.2) both}
+  @keyframes drop{from{transform:translateY(-14px) scale(.96);opacity:.4}to{transform:none;opacity:1}}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="lang" role="group" aria-label="Jezik / Language">
+    <button type="button" id="lang-me" data-l="me" aria-pressed="true">ME</button>
+    <button type="button" id="lang-en" data-l="en" aria-pressed="false">EN</button>
+  </div>
+  <h1 class="mark">PUB 91</h1>
+  <p class="sub">Zabjelo</p>
+  <p class="est">est. 2026</p>
+  <div class="search">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="q" type="search" autocomplete="off" aria-label="Pretraži meni" placeholder="Pretraži piće…">
+  </div>
+</header>
+<nav class="cats" aria-label="Kategorije"><div class="wrap" id="cats"></div></nav>
+<main class="wrap" id="menu"></main>
+<footer class="wrap">
+  <p class="thanks" id="thanks">Živjeli!</p>
+  <a class="ig" href="https://www.instagram.com/pub_91_/" target="_blank" rel="noopener">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+    @pub_91_
+  </a>
+</footer>
+
+<script>
+// ---- THE MENU: change names and prices here ----
+// [name, size, price, English name (optional)]
+const MENU = [
+  { me: 'Vode', en: 'Water', ic: 'drop', items: [
+    ['Rosa', '0.33l', 1.70, 'Still water'], ['Knjaz Miloš', '0.25l', 1.70, 'Sparkling water'] ] },
+  { me: 'Topli napici', en: 'Hot drinks', ic: 'cup', items: [
+    ['Domaća kafa', '0.125l', 1.50, 'Turkish-style coffee'], ['Espreso', '0.05l', 1.50, 'Espresso'], ['Dupli espreso', '0.10l', 3.00, 'Double espresso'],
+    ['Makijato', '0.05l', 1.60, 'Macchiato'], ['Dojč / Kapucino', '0.125l', 1.70, 'Cappuccino'], ['Čaj', '', 1.70, 'Tea'],
+    ['Nescafe', '0.33l', 2.20], ['Americano', '0.25l', 1.50] ] },
+  { me: 'Gazirani sokovi', en: 'Soft drinks', ic: 'fizz', items: [
+    ['Coca Cola', '0.25l', 2.60], ['Coca Cola Zero', '0.25l', 2.60], ['Fanta', '0.25l', 2.60], ['Schweppes Bitter Lemon', '0.25l', 2.60],
+    ['Schweppes Tonic', '0.25l', 2.60], ['Cockta', '0.25l', 2.60], ['Orangina', '0.25l', 3.00], ['Sprite', '0.25l', 2.60] ] },
+  { me: 'Negazirani sokovi', en: 'Juices', ic: 'juice', items: [
+    ['Cedevita', '0.33l', 2.50], ['Ice Tea', '0.25l', 2.60], ['Borovnica', '0.25l', 2.60, 'Blueberry'], ['Breskva', '0.25l', 2.60, 'Peach'],
+    ['Jabuka', '0.25l', 2.60, 'Apple'], ['Pomorandža', '0.25l', 2.60, 'Orange'], ['Jagoda', '0.25l', 2.60, 'Strawberry'] ] },
+  { me: 'Svježe cijeđeni sokovi', en: 'Freshly squeezed', ic: 'citrus', items: [
+    ['Limunada', '0.33l', 2.70, 'Lemonade'], ['Pomorandža', '0.33l', 3.20, 'Orange juice'] ] },
+  { me: 'Energetska pića', en: 'Energy drinks', ic: 'bolt', items: [
+    ['Red Bull', '0.25l', 3.90], ['Guarana', '0.25l', 2.80] ] },
+  { me: 'Točena piva', en: 'Draft beer', ic: 'beer', items: [
+    ['Stella Artois', '0.25l', 2.20], ['Stella Artois', '0.33l', 2.60], ['Stella Artois', '0.50l', 3.00],
+    ['Bavaria', '0.25l', 2.20], ['Bavaria', '0.33l', 2.60], ['Bavaria', '0.50l', 3.00] ] },
+  { me: 'Flaširana piva', en: 'Bottled beer', ic: 'bottle', items: [
+    ['Nikšićko', '0.33l', 2.70], ['Bavaria', '0.25l', 2.70], ['Tuborg', '0.33l', 2.70], ['Heineken', '0.25l', 2.90], ['Somersby', '0.33l', 2.70, 'Cider'] ] },
+  { me: 'Viski', en: 'Whisky', ic: 'tumbler', items: [
+    ['Ballantine\'s', '0.03l', 2.60], ['Johnnie Walker Red', '0.03l', 2.70], ['Johnnie Walker Black', '0.03l', 3.60],
+    ['Jack Daniel\'s', '0.03l', 3.20], ['Jack Daniel\'s Single Barrel', '0.03l', 3.70] ] },
+  { me: 'Kratka pića', en: 'Spirits', ic: 'shot', items: [
+    ['Sierra Tequila Blanco', '0.03l', 2.70], ['Sierra Tequila Reposado', '0.03l', 2.70], ['Spicy Tequila', '0.03l', 3.00],
+    ['Finsbury Gin', '0.03l', 2.60], ['Hendrick\'s Gin', '0.03l', 3.60], ['Vodka Smirnoff', '0.03l', 3.20],
+    ['Vodka Mix', '0.03l', 3.80, 'Vodka with mixer'], ['Gin Mix', '0.03l', 3.50, 'Gin with mixer'] ] },
+  { me: 'Rakije', en: 'Rakija (fruit brandy)', ic: 'flask', items: [
+    ['Loza', '0.03l', 1.80, 'Grape'], ['Viljamovka', '0.03l', 2.30, 'Pear'], ['Žuta šljiva', '0.03l', 1.80, 'Yellow plum'],
+    ['Dunja Pevac', '0.03l', 3.00, 'Quince'], ['Šljiva Stara Pesma', '0.03l', 2.90, 'Plum'], ['Kruna', '0.03l', 2.30], ['Meduška', '0.03l', 2.30] ] },
+  { me: 'Vina', en: 'Wine', ic: 'wine', items: [
+    ['Plantaže Vranac', '0.187l', 3.40, 'Red'], ['Plantaže Roze', '0.187l', 3.40, 'Rosé'], ['Plantaže Šardone', '0.187l', 3.40, 'Chardonnay'],
+    ['Kutjevo Graševina', '0.187l', 3.80, 'White'] ] },
+  { me: 'Aperitivi', en: 'Aperitifs', ic: 'cocktail', items: [
+    ['Pelinkovac', '0.03l', 2.20], ['Jägermeister', '0.03l', 2.80], ['Amaro Montenegro', '0.03l', 2.70],
+    ['Campari Spritz', '', 5.00], ['Aperol Spritz', '', 5.00], ['Martini Bianco', '', 2.80], ['Martini Rosso', '', 2.80], ['Baileys', '', 2.80] ] },
+];
+
+// simple line icons, one per category
+const P = {
+  drop: '<path d="M12 3c3.5 4.2 6 7.4 6 10.5A6 6 0 0 1 6 13.5C6 10.4 8.5 7.2 12 3z"/>',
+  cup: '<path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3v3M12 3v3"/>',
+  fizz: '<path d="M7 4h10l-1.5 16h-7z"/><circle cx="11" cy="10" r=".9"/><circle cx="13.5" cy="13" r=".9"/><circle cx="11.5" cy="16" r=".9"/>',
+  juice: '<path d="M6 7h12l-1.6 13H7.6z"/><path d="M14 7l2-4h3"/><path d="M6.6 12h10.8"/>',
+  citrus: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="5"/><path d="M12 7v10M7 12h10M8.5 8.5l7 7M15.5 8.5l-7 7"/>',
+  bolt: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+  beer: '<path d="M5 8h10v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M15 11h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2"/><path d="M5 8a3 3 0 0 1 3-4 3 3 0 0 1 5 0 2.5 2.5 0 0 1 2 4"/><path d="M8.5 12v5M11.5 12v5"/>',
+  bottle: '<path d="M10 2h4v4l1.5 3v12a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V9L10 6z"/><path d="M8.5 13h7"/>',
+  tumbler: '<path d="M5 6h14l-1.5 13a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2z"/><path d="M6 12h12"/><rect x="9" y="13.5" width="3" height="3" rx=".5"/>',
+  shot: '<path d="M7 5h10l-1.6 14H8.6z"/><path d="M7.8 11h8.4"/>',
+  flask: '<path d="M9 2h6M10 2v6L5 18a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-10V2"/><path d="M7.2 14h9.6"/>',
+  wine: '<path d="M8 3h8l-.5 6a3.5 3.5 0 0 1-7 0z"/><path d="M12 12.5V20M8.5 21h7"/><path d="M8.3 6.5h7.4"/>',
+  cocktail: '<path d="M4 4h16l-8 9z"/><path d="M12 13v7M8 21h8"/><path d="M15.5 4l3-2"/>',
+};
+const icon = (k, s) => '<svg width="' + s + '" height="' + s + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + P[k] + '</svg>';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const price = n => n.toFixed(2) + ' €';
+const fold = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'dj');
+const slug = s => fold(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const T = {
+  me: { search: 'Pretraži piće…', none: 'Nema pića za tu pretragu.', note: 'Cijene su u eurima (€).', thanks: 'Živjeli!', items: n => n === 1 ? '1 piće' : n + ' pića' },
+  en: { search: 'Search drinks…', none: 'No drinks match that search.', note: 'Prices are in euros (€).', thanks: 'Cheers!', items: n => n === 1 ? '1 drink' : n + ' drinks' },
+};
+let lang = 'me';
+try { if (localStorage.getItem('pub91-lang') === 'en') lang = 'en'; } catch (e) {}
+const qEl = document.getElementById('q');
+
+function draw() {
+  const en = lang === 'en', t = T[lang], q = fold(qEl.value.trim());
+  document.documentElement.lang = en ? 'en' : 'sr-Latn-ME';
+  qEl.placeholder = t.search; qEl.setAttribute('aria-label', t.search.replace('…', ''));
+  const cats = MENU.map(c => ({ ...c, shown: c.items.filter(([n, , , e]) => { if (!q) return true; const words = fold(n + ' ' + (e || '') + ' ' + c.me + ' ' + c.en).split(/[^a-z0-9]+/); return q.split(/\s+/).every(w => words.some(x => x.startsWith(w))); }) })).filter(c => c.shown.length);
+  document.getElementById('cats').innerHTML = cats.map(c => '<a href="#' + slug(c.me) + '">' + icon(c.ic, 16) + esc(en ? c.en : c.me) + '</a>').join('');
+  document.getElementById('menu').innerHTML = cats.length ? cats.map(c =>
+    '<section id="' + slug(c.me) + '"><div class="sh"><span class="ic">' + icon(c.ic, 22) + '</span><h2>' + esc(en ? c.en : c.me) + '</h2><span class="cnt">' + t.items(c.shown.length) + '</span></div><ul>' +
+    c.shown.map(([n, size, p, eng]) => '<li><span class="nm"><b>' + esc(n) + '</b>' + (size ? '<span class="sz">' + size + '</span>' : '') +
+      (en && eng ? '<i>' + esc(eng) + '</i>' : '') + '</span><span class="dots" aria-hidden="true"></span><span class="pr">' + price(p) + '</span></li>').join('') +
+    '</ul></section>').join('') : '<p class="empty">' + t.none + '</p>';
+  document.getElementById('thanks').textContent = t.thanks;
+  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.l === lang)));
+}
+document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => {
+  lang = b.dataset.l; try { localStorage.setItem('pub91-lang', lang); } catch (e) {} draw();
+}));
+qEl.addEventListener('input', draw);
+draw();
+</script>
+</body>
+</html>
